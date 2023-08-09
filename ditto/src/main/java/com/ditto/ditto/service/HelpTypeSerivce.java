@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class HelptTypeSerivce {
+public class HelpTypeSerivce {
     private final HelpTypeRepository helpTypeRepository;
     private final HelpSeekerRepository helpSeekerRepository;
 

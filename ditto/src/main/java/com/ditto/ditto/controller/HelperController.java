@@ -2,6 +2,7 @@ package com.ditto.ditto.controller;
 
 import com.ditto.ditto.dto.HelpSeekerDto;
 import com.ditto.ditto.dto.HelpTypeDto;
+import com.ditto.ditto.dto.HelperDto;
 import com.ditto.ditto.entity.HelpTypeEntity;
 import com.ditto.ditto.service.HelpSeekerService;
 import com.ditto.ditto.service.HelperService;
@@ -30,4 +31,11 @@ public class HelperController {
         return ResponseEntity.ok(helpTypeDto);
     }
 
+    //평점, 포인트, 도움 횟수 조회
+    @GetMapping("{helperId}/points")
+    public ResponseEntity<HelperDto> readPoint(@PathVariable("helperId") Long helperId) {
+        HelperDto helperDto = helperService.readPoint(helperId);
+
+        return ResponseEntity.ok(helperDto);
+    }
 }
