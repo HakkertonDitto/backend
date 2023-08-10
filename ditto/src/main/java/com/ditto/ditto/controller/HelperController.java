@@ -1,5 +1,6 @@
 package com.ditto.ditto.controller;
 
+import com.ditto.ditto.dto.CommentDto;
 import com.ditto.ditto.dto.HelpSeekerDto;
 import com.ditto.ditto.dto.HelpTypeDto;
 import com.ditto.ditto.dto.HelperDto;
@@ -9,6 +10,8 @@ import com.ditto.ditto.service.HelperService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/helper")
@@ -37,5 +40,12 @@ public class HelperController {
         HelperDto helperDto = helperService.readPoint(helperId);
 
         return ResponseEntity.ok(helperDto);
+    }
+
+    // 코멘트 확인
+    @GetMapping("/{helperId}/comment")
+    public ResponseEntity<List<CommentDto>> readComment(@PathVariable("helperId") Long helperId) {
+        List<CommentDto> comment = helperService.findComment(helperId);
+        return ResponseEntity.ok(comment);
     }
 }

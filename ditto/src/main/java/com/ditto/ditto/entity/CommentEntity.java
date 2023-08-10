@@ -18,6 +18,8 @@ public class CommentEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "comment_id")
     private Long id;
-    @ElementCollection
-    private List<String> category = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "helper_id")
+    private HelperEntity helperEntity;
+    private String comment;
 }

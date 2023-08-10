@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -23,9 +25,8 @@ public class HelperEntity {
     private int point;
     private Long grade;
     private int helpCount;
-    @OneToOne
-    @JoinColumn(name = "comment_id")
-    private CommentEntity commentEntity;
+    @OneToMany(mappedBy = "helperEntity")
+    private List<CommentEntity> commentEntity;
 
     @OneToOne
     @JoinColumn(name = "category_id")
