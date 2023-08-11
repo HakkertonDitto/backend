@@ -21,6 +21,13 @@ import java.util.Optional;
 public class HelperService {
     private final HelperRepository helperRepository;
 
+    //helper 생성
+    public void create(HelperDto helperDto) {
+        HelperEntity helperEntity = new HelperEntity();
+        helperEntity.setNickname(helperDto.getNickname());
+        helperEntity.setPhoneNumber(helperDto.getPhoneNumber());
+        helperRepository.save(helperEntity);
+    }
 
     // 포인트, 봉사시간, 도움 횟수 조회
     public HelperDto readPoint(Long helperId) {
@@ -45,5 +52,21 @@ public class HelperService {
             ));
         }
         return commentDtoList;
+    }
+
+    // helper 조회
+    public HelperDto read(Long helperId) {
+        HelperEntity helperEntity = helperRepository.findById(helperId).get();
+
+        return new HelperDto(
+                helperEntity.getId(),
+                helperEntity.getNickname(),
+                helperEntity.getPhoneNumber(),
+                helperEntity.getTime(),
+                helperEntity.isHelpOnOff(),
+                helperEntity.getPoint(),
+                helperEntity.getGrade(),
+                helperEntity.getHelpCount(),
+                helperEntity.getCategoryEntity());
     }
 }

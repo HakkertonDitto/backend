@@ -19,7 +19,8 @@ public class CategoryEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "category_id")
     private Long id;
-    @ElementCollection
-    private List<String> category = new ArrayList<>();
+    private String category;
 
+    @OneToOne(mappedBy = "categoryEntity")
+    private HelperEntity helperEntity;
 }

@@ -1,5 +1,6 @@
 package com.ditto.ditto.dto;
 
+import com.ditto.ditto.entity.CategoryEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,4 +19,5 @@ public class HelperDto {
     private int point;
     private Long grade;
     private int helpCount;
+    private CategoryEntity categoryEntity;
 }

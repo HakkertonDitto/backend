@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/helpSeeker")
 @RequiredArgsConstructor
 public class HelpTypeController {
-    public final HelpTypeSerivce helpTypeSerivce;
+    /*public final HelpTypeSerivce helpTypeSerivce;
 
     //helpType 저장
     @PostMapping("/{helpSeekerId}")
@@ -18,5 +18,5 @@ public class HelpTypeController {
         HelpTypeDto helpType = helpTypeSerivce.create(helpSeekerId, helpTypeDto);
 
         return ResponseEntity.ok(helpType);
-    }
+    }*/
 }

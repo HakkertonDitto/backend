@@ -13,6 +13,5 @@ import java.util.List;
 @NoArgsConstructor
 public class CategoryDto {
     private Long id;
-    private List<String> category = new ArrayList<>();
-    private String detail;
+    private String category;
 }

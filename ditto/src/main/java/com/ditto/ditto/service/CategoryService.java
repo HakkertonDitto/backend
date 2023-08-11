@@ -9,10 +9,22 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
 public class CategoryService {
-    private final HelperRepository helperRepository;
     private final CategoryRepository categoryRepository;
+    private final HelperRepository helperRepository;
+    public void create(Long helperId, CategoryDto categoryDto) {
+        HelperEntity helperEntity = helperRepository.findById(helperId).get();
+        CategoryEntity categoryEntity = new CategoryEntity();
+        categoryEntity.setCategory(categoryDto.getCategory());
+        categoryEntity.setHelperEntity(helperEntity);
+        categoryRepository.save(categoryEntity);
+
+        helperEntity.setCategoryEntity(categoryEntity);
+    }
+
 }

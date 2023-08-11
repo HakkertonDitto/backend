@@ -11,12 +11,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @RequiredArgsConstructor
 public class HelpSeekerService {
-    private HelpSeekerRepository helpSeekerRepository;
+    private final HelpSeekerRepository helpSeekerRepository;
 
     // 새로운 HelpSeeker 객체 생성 후 저장
-    public void create() {
+    public Long create() {
         HelpSeekerEntity helpSeekerEntity = new HelpSeekerEntity();
         helpSeekerRepository.save(helpSeekerEntity);
+
+        return helpSeekerEntity.getId();
     }
 
     // HelpSeeker 조회
