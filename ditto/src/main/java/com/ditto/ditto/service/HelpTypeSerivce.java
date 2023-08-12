@@ -27,7 +27,6 @@ public class HelpTypeSerivce {
         HelpTypeEntity helpTypeEntity = new HelpTypeEntity();
         helpTypeEntity.setCategory(helpTypeDto.getCategory());
         helpTypeEntity.setDetail(helpTypeDto.getDetail());
-        helpTypeEntity.setEtc(helpTypeDto.getEtc());
 
         helpTypeRepository.save(helpTypeEntity);
 
@@ -36,8 +35,7 @@ public class HelpTypeSerivce {
         return new HelpTypeDto(
                 helpTypeEntity.getId(),
                 helpTypeEntity.getCategory(),
-                helpTypeEntity.getDetail(),
-                helpTypeDto.getEtc()
+                helpTypeEntity.getDetail()
         );
     }
 
@@ -49,8 +47,7 @@ public class HelpTypeSerivce {
             helpTypeDtoList.add(new HelpTypeDto(
                     helpTypeEntity.getId(),
                     helpTypeEntity.getCategory(),
-                    helpTypeEntity.getDetail(),
-                    helpTypeEntity.getEtc()
+                    helpTypeEntity.getDetail()
             ));
         }
         return helpTypeDtoList;

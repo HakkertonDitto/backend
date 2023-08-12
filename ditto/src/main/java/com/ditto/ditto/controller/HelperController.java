@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/helper")
+@RequestMapping("/donor")
 @RequiredArgsConstructor
 public class HelperController {
     private final HelperService helperService;
@@ -31,21 +31,21 @@ public class HelperController {
     }
 
     // helpType 조회
-    @GetMapping("/{helperId}/{helpSeekerId}")
+    @GetMapping("/call/information/{helperId}/{helpSeekerId}")
     public ResponseEntity<HelpTypeDto> readHelpType(@PathVariable("helpSeekerId") Long helpSeekerId) {
         HelpSeekerDto helpSeekerDto = helpSeekerService.read(helpSeekerId);
         HelpTypeEntity helpTypeEntity = helpSeekerDto.getHelpTypeEntity();
         HelpTypeDto helpTypeDto = new HelpTypeDto(
                 helpTypeEntity.getId(),
                 helpTypeEntity.getCategory(),
-                helpTypeEntity.getDetail(),
-                helpTypeEntity.getEtc());
+                helpTypeEntity.getDetail()
+                );
 
         return ResponseEntity.ok(helpTypeDto);
     }
 
     //평점, 포인트, 도움 횟수 조회
-    @GetMapping("{helperId}/points")
+    @GetMapping("/donor/mypage/information/{helperId}")
     public ResponseEntity<HelperDto> readPoint(@PathVariable("helperId") Long helperId) {
         HelperDto helperDto = helperService.readPoint(helperId);
 
@@ -53,7 +53,7 @@ public class HelperController {
     }
 
     // 코멘트 확인
-    @GetMapping("/{helperId}/comment")
+    @GetMapping("/donor/mypage/comment/{helperId}")
     public ResponseEntity<List<CommentDto>> readComment(@PathVariable("helperId") Long helperId) {
         List<CommentDto> comment = helperService.findComment(helperId);
         return ResponseEntity.ok(comment);
