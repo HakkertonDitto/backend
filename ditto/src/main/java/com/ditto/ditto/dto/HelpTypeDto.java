@@ -13,5 +13,5 @@ public class HelpTypeDto {
     private Long id;
     private String category;
     private String detail;
-    private String etc;
+
 }

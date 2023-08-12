@@ -19,7 +19,6 @@ public class HelpTypeEntity {
 
     private String category;
     private String detail;
-    private String etc;
 
     @OneToOne(mappedBy = "helpTypeEntity")
     private HelpSeekerEntity helpSeekerEntity;

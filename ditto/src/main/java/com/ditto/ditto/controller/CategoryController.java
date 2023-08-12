@@ -6,11 +6,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/category")
+@RequestMapping("/donor")
 @RequiredArgsConstructor
 public class CategoryController {
     private final CategoryService categoryService;
-    @PostMapping("/{helperId}")
+
+    // 카테고리 생성 후 저장
+    @PostMapping("/choice/{helperId}")
     public void create(@PathVariable("helperId") Long helperId, @RequestBody CategoryDto categoryDto) {
         categoryService.create(helperId, categoryDto);
     }
