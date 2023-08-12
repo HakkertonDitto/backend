@@ -25,6 +25,8 @@ public class HelperEntity {
     private int point;
     private Long grade;
     private int helpCount;
+    @ElementCollection
+    private List<Long> scores;
     @OneToMany(mappedBy = "helperEntity")
     private List<CommentEntity> commentEntity;
 

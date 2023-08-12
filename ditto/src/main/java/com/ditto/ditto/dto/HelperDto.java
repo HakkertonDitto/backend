@@ -20,4 +20,6 @@ public class HelperDto {
     private Long grade;
     private int helpCount;
     private CategoryEntity categoryEntity;
+
+    private double averageScore;
 }
