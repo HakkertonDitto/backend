@@ -22,7 +22,6 @@ public class DonorService {
     }
     public List<DonorDto.Response> getAllByHelper(Long helperId){
         HelperEntity helper = helperRepository.findById(helperId).orElseThrow();
-        String userName = helper.getNickname();
         return donorRepository.findAllByHelperEntity(helper).stream().map(DonorDto.Response::new).collect(Collectors.toList());
     }
 }
