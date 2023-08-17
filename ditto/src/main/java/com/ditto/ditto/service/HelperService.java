@@ -66,9 +66,7 @@ public class HelperService {
                 helperEntity.getTime(),
                 helperEntity.isHelpOnOff(),
                 helperEntity.getPoint(),
-                helperEntity.getGrade(),
                 helperEntity.getHelpCount(),
-                helperEntity.getCategoryEntity(),
                 helperEntity.getScores().stream()
                                         .mapToLong(Long::longValue)
                                         .average()

@@ -23,14 +23,10 @@ public class HelperEntity {
     private int time;
     private boolean helpOnOff;
     private int point;
-    private Long grade;
     private int helpCount;
     @ElementCollection
     private List<Long> scores;
     @OneToMany(mappedBy = "helperEntity")
     private List<CommentEntity> commentEntity;
 
-    @OneToOne
-    @JoinColumn(name = "category_id")
-    private CategoryEntity categoryEntity;
 }

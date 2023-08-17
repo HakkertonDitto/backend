@@ -1,6 +1,5 @@
 package com.ditto.ditto.dto;
 
-import com.ditto.ditto.entity.CategoryEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,9 +16,7 @@ public class HelperDto {
     private int time;
     private boolean helpOnOff;
     private int point;
-    private Long grade;
     private int helpCount;
-    private CategoryEntity categoryEntity;
 
     private double averageScore;
 }

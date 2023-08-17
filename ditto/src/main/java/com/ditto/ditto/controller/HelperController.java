@@ -1,11 +1,8 @@
 package com.ditto.ditto.controller;
 
 import com.ditto.ditto.dto.CommentDto;
-import com.ditto.ditto.dto.HelpSeekerDto;
 import com.ditto.ditto.dto.HelpTypeDto;
 import com.ditto.ditto.dto.HelperDto;
-import com.ditto.ditto.entity.CategoryEntity;
-import com.ditto.ditto.entity.HelpTypeEntity;
 import com.ditto.ditto.service.HelpSeekerService;
 import com.ditto.ditto.service.HelpTypeSerivce;
 import com.ditto.ditto.service.HelperService;
@@ -44,7 +41,7 @@ public class HelperController {
     }
 
     //평점, 포인트, 도움 횟수 조회
-    @GetMapping("/donor/mypage/information/{helperId}")
+    @GetMapping("/mypage/information/{helperId}")
     public ResponseEntity<HelperDto> readPoint(@PathVariable("helperId") Long helperId) {
         HelperDto helperDto = helperService.readPoint(helperId);
 
@@ -52,7 +49,7 @@ public class HelperController {
     }
 
     // 코멘트 확인
-    @GetMapping("/donor/mypage/comment/{helperId}")
+    @GetMapping("/mypage/comment/{helperId}")
     public ResponseEntity<List<CommentDto>> readComment(@PathVariable("helperId") Long helperId) {
         List<CommentDto> comment = helperService.findComment(helperId);
         return ResponseEntity.ok(comment);
