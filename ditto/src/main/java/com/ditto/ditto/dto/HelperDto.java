@@ -4,10 +4,6 @@ import com.ditto.ditto.entity.Donor;
 import com.ditto.ditto.entity.Helper;
 import lombok.*;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class HelperDto {
 
     @Data

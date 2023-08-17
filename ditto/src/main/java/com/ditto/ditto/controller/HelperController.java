@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/donor")
+@RequestMapping("/help")
 @RequiredArgsConstructor
 public class HelperController {
     private final HelperService helperService;
@@ -51,7 +51,7 @@ public class HelperController {
     }
 
     //평점, 포인트, 도움 횟수 조회
-    @GetMapping("/mypage/{helperId}")
+    @GetMapping("/helper/{helperId}")
     public ResponseEntity<HelperDto.Response> readHelper(@PathVariable("helperId") Long helperId) {
         return ResponseEntity.ok(
                 helperService.readHelper(helperId)
@@ -59,7 +59,7 @@ public class HelperController {
     }
 
     // 코멘트 확인
-    @GetMapping("/mypage/{helperId}/comment")
+    @GetMapping("/helper/{helperId}/donor")
     public ResponseEntity<List<DonorDto.Response>> readComment(@PathVariable("helperId") Long helperId) {
 
         return ResponseEntity.ok(

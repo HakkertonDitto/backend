@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface DonorRepository extends JpaRepository<Donor, Long> {
-    List<Donor> findAllByHelperEntity(Helper helperEntity);
+    List<Donor> findAllByHelper(Helper helperEntity);
 }

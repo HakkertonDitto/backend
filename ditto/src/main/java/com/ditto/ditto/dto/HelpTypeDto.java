@@ -5,10 +5,6 @@ import com.ditto.ditto.entity.HelpSeeker;
 import com.ditto.ditto.entity.HelpType;
 import lombok.*;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class HelpTypeDto {
     @Data
     @Builder
