@@ -17,7 +17,7 @@ public class Donor {
     Long callTime;
     Long score;
     String comment;
-    @OneToOne
+    @ManyToOne
     HelperEntity helperEntity;
 
 }
