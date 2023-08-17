@@ -1,6 +1,5 @@
 package com.ditto.ditto.controller;
 
-import com.ditto.ditto.dto.CommentDto;
 import com.ditto.ditto.dto.HelpTypeDto;
 import com.ditto.ditto.dto.HelperDto;
 import com.ditto.ditto.service.HelpSeekerService;
@@ -32,9 +31,9 @@ public class HelperController {
 
     // helpType 조회
     @GetMapping("/list")
-    public List<HelpTypeDto> readHelpTypeList() {
-        List<HelpTypeDto> helpTypeDtoList = helpTypeSerivce.readAll();
-        List<HelpTypeDto> filterList = new ArrayList<>();
+    public List<HelpTypeDto.Response> readHelpTypeList() {
+        List<HelpTypeDto.Response> helpTypeDtoList = helpTypeSerivce.readAll();
+        List<HelpTypeDto.Response> filterList = new ArrayList<>();
 
         for (HelpTypeDto helpTypeDto : helpTypeDtoList) {
             filterList.add(helpTypeDto);

@@ -1,7 +1,7 @@
 package com.ditto.ditto.dto;
 
 import com.ditto.ditto.entity.Donor;
-import com.ditto.ditto.entity.HelperEntity;
+import com.ditto.ditto.entity.Helper;
 import lombok.*;
 
 public class DonorDto {
@@ -12,12 +12,12 @@ public class DonorDto {
         Long callTime;
         Long score;
         String comment;
-        public Donor toEntity(HelperEntity helperEntity){
+        public Donor toEntity(Helper helper){
             return Donor.builder()
                     .callTime(callTime)
                     .score(score)
                     .comment(comment)
-                    .helperEntity(helperEntity)
+                    .helper(helper)
                     .build();
         }
     }
@@ -35,7 +35,7 @@ public class DonorDto {
             this.callTime = donor.getCallTime();
             this.score = donor.getScore();
             this.comment = donor.getComment();
-            this.userName = donor.getHelperEntity().getNickname();
+            this.userName = donor.getHelper().getNickname();
         }
     }
 }

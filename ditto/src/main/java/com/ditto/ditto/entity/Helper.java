@@ -1,19 +1,17 @@
 package com.ditto.ditto.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-public class HelperEntity {
+@AllArgsConstructor @Builder
+public class Helper {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "helper_id")
@@ -23,10 +21,8 @@ public class HelperEntity {
     private int time;
     private boolean helpOnOff;
     private int point;
-    private int helpCount;
-    @ElementCollection
-    private List<Long> scores;
-    @OneToMany(mappedBy = "helperEntity")
-    private List<CommentEntity> commentEntity;
+
+    @OneToMany(mappedBy = "helper")
+    private List<Donor> donors;
 
 }
