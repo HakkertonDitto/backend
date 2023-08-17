@@ -31,17 +31,16 @@ public class HelperController {
     }
 
     // helpType 조회
-    @GetMapping("/call/information/{helperId}/{helpSeekerId}")
-    public ResponseEntity<HelpTypeDto> readHelpType(@PathVariable("helpSeekerId") Long helpSeekerId) {
-        HelpSeekerDto helpSeekerDto = helpSeekerService.read(helpSeekerId);
-        HelpTypeEntity helpTypeEntity = helpSeekerDto.getHelpTypeEntity();
-        HelpTypeDto helpTypeDto = new HelpTypeDto(
-                helpTypeEntity.getId(),
-                helpTypeEntity.getCategory(),
-                helpTypeEntity.getDetail()
-                );
+    @GetMapping("/list")
+    public List<HelpTypeDto> readHelpTypeList() {
+        List<HelpTypeDto> helpTypeDtoList = helpTypeSerivce.readAll();
+        List<HelpTypeDto> filterList = new ArrayList<>();
 
-        return ResponseEntity.ok(helpTypeDto);
+        for (HelpTypeDto helpTypeDto : helpTypeDtoList) {
+            filterList.add(helpTypeDto);
+        }
+
+        return filterList;
     }
 
     //평점, 포인트, 도움 횟수 조회
@@ -60,19 +59,19 @@ public class HelperController {
     }
 
     // 필터에 맞는 helpType 리스트 조회
-    @GetMapping("/{helperId}/list")
-    public List<HelpTypeDto> readHelpTypeList(@PathVariable("helperId") Long helperId) {
-        CategoryEntity categoryEntity = helperService.read(helperId).getCategoryEntity();
-        String filter = categoryEntity.getCategory();
-        List<HelpTypeDto> helpTypeDtoList = helpTypeSerivce.readAll();
-        List<HelpTypeDto> filterList = new ArrayList<>();
-
-        for (HelpTypeDto helpTypeDto : helpTypeDtoList) {
-            if (helpTypeDto.getCategory().equals(filter)) {
-                filterList.add(helpTypeDto);
-            }
-        }
-
-        return filterList;
-    }
+//    @GetMapping("/{helperId}/list")
+//    public List<HelpTypeDto> readHelpTypeList(@PathVariable("helperId") Long helperId) {
+//        CategoryEntity categoryEntity = helperService.read(helperId).getCategoryEntity();
+//        String filter = categoryEntity.getCategory();
+//        List<HelpTypeDto> helpTypeDtoList = helpTypeSerivce.readAll();
+//        List<HelpTypeDto> filterList = new ArrayList<>();
+//
+//        for (HelpTypeDto helpTypeDto : helpTypeDtoList) {
+//            if (helpTypeDto.getCategory().equals(filter)) {
+//                filterList.add(helpTypeDto);
+//            }
+//        }
+//
+//        return filterList;
+//    }
 }
