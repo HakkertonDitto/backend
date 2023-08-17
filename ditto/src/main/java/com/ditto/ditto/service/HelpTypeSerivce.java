@@ -26,6 +26,8 @@ public class HelpTypeSerivce {
         HelpSeeker helpSeeker = helpSeekerRepository.findById(helpSeekerId).get();
         HelpType helpType = helpTypeDto.toEntity(helpSeeker);
         helpTypeRepository.save(helpType);
+        helpSeeker.setHelpType(helpType);
+        helpSeekerRepository.save(helpSeeker);
         return new HelpTypeDto.Response(helpType);
     }
 
