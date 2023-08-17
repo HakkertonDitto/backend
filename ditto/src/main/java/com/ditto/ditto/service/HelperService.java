@@ -25,24 +25,17 @@ public class HelperService {
         helperRepository.save(helper);
     }
 
-    // 포인트, 봉사시간, 도움 횟수 조회
-    public HelperDto.Response readPoint(Long helperId) {
+    // helper 조회
+    public HelperDto.Response readHelper(Long helperId) {
         Helper helper = helperRepository.findById(helperId).get();
         List<Long> totalScore= helper.getDonors().stream().map(
                 donor -> {
                     return (long)donor.getScore();
                 }
         ).collect(Collectors.toList());
-        double averageScore = totalScore.stream().mapToLong(Long::longValue).sum() / totalScore.size();
+        double helpCount = totalScore.size();
+        double averageScore = totalScore.stream().mapToLong(Long::longValue).sum() / helpCount;
         return new HelperDto.Response(helper, helpCount, averageScore);
-    }
-    public double getTotalScore(Helper helper){
-        List<Long> totalScore= helper.getDonors().stream().map(
-                donor -> {
-                    return (long)donor.getScore();
-                }
-        ).collect(Collectors.toList());
-        return totalScore.stream().mapToLong(Long::longValue).sum();
     }
     public List<DonorDto.Response> findAllDonorByHelper(Long helperId) {
         Helper helper = helperRepository.findById(helperId).get();
@@ -50,23 +43,5 @@ public class HelperService {
         return helper.getDonors().stream()
                 .map(DonorDto.Response::new)
                 .collect(Collectors.toList());
-    }
-
-    // helper 조회
-    public HelperDto read(Long helperId) {
-        Helper helperEntity = helperRepository.findById(helperId).get();
-
-        return new HelperDto(
-                helperEntity.getId(),
-                helperEntity.getNickname(),
-                helperEntity.getPhoneNumber(),
-                helperEntity.getTime(),
-                helperEntity.isHelpOnOff(),
-                helperEntity.getPoint(),
-                helperEntity.getHelpCount(),
-                helperEntity.getScores().stream()
-                                        .mapToLong(Long::longValue)
-                                        .average()
-                                        .orElse(0.0));
     }
 }
