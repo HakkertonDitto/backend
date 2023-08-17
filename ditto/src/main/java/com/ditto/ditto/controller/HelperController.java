@@ -6,9 +6,11 @@ import com.ditto.ditto.dto.HelperDto;
 import com.ditto.ditto.service.HelpSeekerService;
 import com.ditto.ditto.service.HelpTypeSerivce;
 import com.ditto.ditto.service.HelperService;
+import com.ditto.ditto.webrtc.service.MainService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +22,7 @@ public class HelperController {
     private final HelperService helperService;
     private final HelpSeekerService helpSeekerService;
     private final HelpTypeSerivce helpTypeSerivce;
+    private final MainService mainService;
 
     //helper 생성
     @PostMapping
@@ -38,6 +41,13 @@ public class HelperController {
         }
 
         return filterList;
+    }
+
+    // 수락 누르면 바로 방으로 입장, api 경로 수정해야할듯
+    @GetMapping("/call/{helperId}/{helpSeekerId}")
+    public ModelAndView call(@PathVariable("helpSeekerId") Long helpSeekerId) {
+        int randomNumber = (int)(Math.random() * (101) + 100);
+        return this.mainService.displaySelectedRoom(helpSeekerId.toString(), Integer.toString(randomNumber));
     }
 
     //평점, 포인트, 도움 횟수 조회

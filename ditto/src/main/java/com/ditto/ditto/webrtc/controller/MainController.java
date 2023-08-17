@@ -22,7 +22,7 @@ public class MainController {
      */
     @GetMapping({"", "/", "/index", "/home"})
     public ModelAndView displayMainPage(final Long id, final String uuid) {
-        return this.mainService.displayMainPage(id, "ditto");
+        return this.mainService.displayMainPage(id, uuid);
     }
 
     /**
@@ -33,29 +33,29 @@ public class MainController {
      * @return
      */
     @PostMapping(value = "/room", params = "action=create")
-    public ModelAndView processRoomSelection(@ModelAttribute("id") final String sid, final BindingResult binding) {
-        return this.mainService.processRoomSelection(sid, "ditto", binding);
+    public ModelAndView processRoomSelection(@ModelAttribute("id") final String sid, @ModelAttribute("uuid") final String uuid, final BindingResult binding) {
+        return this.mainService.processRoomSelection(sid, uuid);
     }
 
     /**
      * 채팅방에 입장할때 실행됨 (채팅방 id 와 입장 uuid 필요)
      */
-    @GetMapping("/room/{sid}/user")
-    public ModelAndView displaySelectedRoom(@PathVariable("sid") final String sid) {
-        return this.mainService.displaySelectedRoom(sid, "ditto");
+    @GetMapping("/room/{sid}/user/{uuid}")
+    public ModelAndView displaySelectedRoom(@PathVariable("sid") final String sid, @PathVariable("uuid") final String uuid) {
+        return this.mainService.displaySelectedRoom(sid, uuid);
     }
 
     /**
      * 채팅방에서 나갈때 실행됨
      */
-    @GetMapping("/room/{sid}/user/exit")
-    public ModelAndView processRoomExit(@PathVariable("sid") final String sid) {
-        return this.mainService.processRoomExit(sid, "ditto");
+    @GetMapping("/room/{sid}/user/{uuid}/exit")
+    public ModelAndView processRoomExit(@PathVariable("sid") final String sid, @PathVariable("uuid") final String uuid) {
+        return this.mainService.processRoomExit(sid, uuid);
     }
 
     @GetMapping("/room/random")
-    public ModelAndView requestRandomRoomNumber() {
-        return mainService.requestRandomRoomNumber("ditto");
+    public ModelAndView requestRandomRoomNumber(@ModelAttribute("uuid") final String uuid) {
+        return mainService.requestRandomRoomNumber(uuid);
     }
 
     /**

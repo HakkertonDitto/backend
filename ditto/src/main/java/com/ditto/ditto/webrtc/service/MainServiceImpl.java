@@ -45,11 +45,8 @@ public class MainServiceImpl implements MainService {
      * 륨 만들어진 main 화면 return
      */
     @Override
-    public ModelAndView processRoomSelection(final String sid, final String uuid, final BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            // simplified version, no errors processing
-            return new ModelAndView(REDIRECT);
-        }
+    public ModelAndView processRoomSelection(final String sid, final String uuid) {
+
         Optional<Long> optionalId = parser.parseId(sid);
         optionalId.ifPresent(id -> Optional.ofNullable(uuid).ifPresent(name -> roomService.addRoom(new Room(id))));
 
