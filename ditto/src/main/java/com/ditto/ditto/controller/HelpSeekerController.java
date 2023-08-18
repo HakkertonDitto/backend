@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/asker")
 @RequiredArgsConstructor
 public class HelpSeekerController {
     private final HelpSeekerService helpSeekerService;
@@ -20,7 +19,7 @@ public class HelpSeekerController {
     private final MainService mainService;
 
     // helpType생성 및 helpSeeker 생성
-    @PostMapping
+    @RequestMapping(value="/asker", method={RequestMethod.GET, RequestMethod.POST})
     public ModelAndView create(@RequestBody HelpTypeDto.Request helpTypeDto) {
         Long id = helpSeekerService.create();
         HelpTypeDto.Response helpType = helpTypeSerivce.create(id, helpTypeDto);
