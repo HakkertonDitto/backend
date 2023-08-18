@@ -21,10 +21,16 @@ public class HelpSeekerController {
 
     // helpType생성 및 helpSeeker 생성
     @PostMapping
-    public ModelAndView create(@RequestBody HelpTypeDto.Request helpTypeDto) {
+    public void create(@RequestBody HelpTypeDto.Request helpTypeDto) {
         Long id = helpSeekerService.create();
         HelpTypeDto.Response helpType = helpTypeSerivce.create(id, helpTypeDto);
-        mainService.processRoomSelection(id.toString(), id.toString());
-        return this.mainService.displaySelectedRoom(id.toString(), id.toString());
     }
+
+    @GetMapping("/{askerId}")
+    public ModelAndView moveRoom(@PathVariable("askerId") Long askerId) {
+        mainService.processRoomSelection(askerId.toString(), askerId.toString());
+        return this.mainService.displaySelectedRoom(askerId.toString(), askerId.toString());
+    }
+
+
 }
