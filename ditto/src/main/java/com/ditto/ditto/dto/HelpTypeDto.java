@@ -1,17 +1,38 @@
 package com.ditto.ditto.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.ditto.ditto.entity.Category;
+import com.ditto.ditto.entity.HelpSeeker;
+import com.ditto.ditto.entity.HelpType;
+import lombok.*;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class HelpTypeDto {
-    private Long id;
-    private String category;
-    private String detail;
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Request{
+        private Category category;
+        private String detail;
+        public HelpType toEntity(HelpSeeker helpSeeker){
+            return HelpType.builder()
+                    .category(category)
+                    .detail(detail)
+                    .helpSeeker(helpSeeker)
+                    .build();
+        }
+    }
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Response {
+        private Long id;
+        private Category category;
+        private String detail;
 
+        public Response(HelpType helpType) {
+            this.id = helpType.getId();
+            this.category = helpType.getCategory();
+            this.detail = helpType.getDetail();
+        }
+    }
 }

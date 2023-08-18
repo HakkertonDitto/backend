@@ -1,7 +1,6 @@
 package com.ditto.ditto.dto;
 
-import com.ditto.ditto.entity.HelpTypeEntity;
-import jakarta.persistence.Entity;
+import com.ditto.ditto.entity.HelpType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,5 +12,5 @@ import lombok.Setter;
 @AllArgsConstructor
 public class HelpSeekerDto {
     private Long id;
-    private HelpTypeEntity helpTypeEntity;
+    private HelpType helpType;
 }

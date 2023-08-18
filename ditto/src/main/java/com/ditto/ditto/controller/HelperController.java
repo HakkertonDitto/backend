@@ -1,6 +1,6 @@
 package com.ditto.ditto.controller;
 
-import com.ditto.ditto.dto.CommentDto;
+import com.ditto.ditto.dto.DonorDto;
 import com.ditto.ditto.dto.HelpTypeDto;
 import com.ditto.ditto.dto.HelperDto;
 import com.ditto.ditto.service.HelpSeekerService;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/donor")
+@RequestMapping("/help")
 @RequiredArgsConstructor
 public class HelperController {
     private final HelperService helperService;
@@ -26,17 +26,17 @@ public class HelperController {
 
     //helper 생성
     @PostMapping
-    public void create(@RequestBody HelperDto helperDto) {
+    public void create(@RequestBody HelperDto.Request helperDto) {
         helperService.create(helperDto);
     }
 
     // helpType 조회
     @GetMapping("/list")
-    public List<HelpTypeDto> readHelpTypeList() {
-        List<HelpTypeDto> helpTypeDtoList = helpTypeSerivce.readAll();
-        List<HelpTypeDto> filterList = new ArrayList<>();
+    public List<HelpTypeDto.Response> readHelpTypeList() {
+        List<HelpTypeDto.Response> helpTypeDtoList = helpTypeSerivce.readAll();
+        List<HelpTypeDto.Response> filterList = new ArrayList<>();
 
-        for (HelpTypeDto helpTypeDto : helpTypeDtoList) {
+        for (HelpTypeDto.Response helpTypeDto : helpTypeDtoList) {
             filterList.add(helpTypeDto);
         }
 
@@ -51,34 +51,19 @@ public class HelperController {
     }
 
     //평점, 포인트, 도움 횟수 조회
-    @GetMapping("/mypage/information/{helperId}")
-    public ResponseEntity<HelperDto> readPoint(@PathVariable("helperId") Long helperId) {
-        HelperDto helperDto = helperService.readPoint(helperId);
-
-        return ResponseEntity.ok(helperDto);
+    @GetMapping("/helper/{helperId}")
+    public ResponseEntity<HelperDto.Response> readHelper(@PathVariable("helperId") Long helperId) {
+        return ResponseEntity.ok(
+                helperService.readHelper(helperId)
+        );
     }
 
     // 코멘트 확인
-    @GetMapping("/mypage/comment/{helperId}")
-    public ResponseEntity<List<CommentDto>> readComment(@PathVariable("helperId") Long helperId) {
-        List<CommentDto> comment = helperService.findComment(helperId);
-        return ResponseEntity.ok(comment);
-    }
+    @GetMapping("/helper/{helperId}/donor")
+    public ResponseEntity<List<DonorDto.Response>> readComment(@PathVariable("helperId") Long helperId) {
 
-    // 필터에 맞는 helpType 리스트 조회
-//    @GetMapping("/{helperId}/list")
-//    public List<HelpTypeDto> readHelpTypeList(@PathVariable("helperId") Long helperId) {
-//        CategoryEntity categoryEntity = helperService.read(helperId).getCategoryEntity();
-//        String filter = categoryEntity.getCategory();
-//        List<HelpTypeDto> helpTypeDtoList = helpTypeSerivce.readAll();
-//        List<HelpTypeDto> filterList = new ArrayList<>();
-//
-//        for (HelpTypeDto helpTypeDto : helpTypeDtoList) {
-//            if (helpTypeDto.getCategory().equals(filter)) {
-//                filterList.add(helpTypeDto);
-//            }
-//        }
-//
-//        return filterList;
-//    }
+        return ResponseEntity.ok(
+          helperService.findAllDonorByHelper(helperId)
+        );
+    }
 }

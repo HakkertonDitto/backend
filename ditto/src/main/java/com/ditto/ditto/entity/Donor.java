@@ -1,6 +1,5 @@
 package com.ditto.ditto.entity;
 
-import com.ditto.ditto.dto.DonorDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,7 +16,8 @@ public class Donor {
     Long callTime;
     Long score;
     String comment;
-    @ManyToOne
-    HelperEntity helperEntity;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "helper_id")
+    Helper helper;
 
 }

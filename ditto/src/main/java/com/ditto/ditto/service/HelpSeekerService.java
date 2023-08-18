@@ -1,7 +1,7 @@
 package com.ditto.ditto.service;
 
 import com.ditto.ditto.dto.HelpSeekerDto;
-import com.ditto.ditto.entity.HelpSeekerEntity;
+import com.ditto.ditto.entity.HelpSeeker;
 import com.ditto.ditto.repository.HelpSeekerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ public class HelpSeekerService {
 
     // 새로운 HelpSeeker 객체 생성 후 저장
     public Long create() {
-        HelpSeekerEntity helpSeekerEntity = new HelpSeekerEntity();
+        HelpSeeker helpSeekerEntity = new HelpSeeker();
         helpSeekerRepository.save(helpSeekerEntity);
 
         return helpSeekerEntity.getId();
@@ -23,11 +23,11 @@ public class HelpSeekerService {
 
     // HelpSeeker 조회
     public HelpSeekerDto read(Long id) {
-        HelpSeekerEntity helpSeekerEntity = helpSeekerRepository.findById(id).get();
+        HelpSeeker helpSeeker = helpSeekerRepository.findById(id).get();
 
         return new HelpSeekerDto(
-                helpSeekerEntity.getId(),
-                helpSeekerEntity.getHelpTypeEntity()
+                helpSeeker.getId(),
+                helpSeeker.getHelpType()
         );
     }
 }
