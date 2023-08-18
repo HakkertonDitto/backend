@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequestMapping("/asker")
 @RequiredArgsConstructor
 public class HelpSeekerController {
     private final HelpSeekerService helpSeekerService;
@@ -19,11 +20,17 @@ public class HelpSeekerController {
     private final MainService mainService;
 
     // helpType생성 및 helpSeeker 생성
-    @RequestMapping(value="/asker", method={RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView create(@RequestBody HelpTypeDto.Request helpTypeDto) {
+    @PostMapping
+    public void create(@RequestBody HelpTypeDto.Request helpTypeDto) {
         Long id = helpSeekerService.create();
         HelpTypeDto.Response helpType = helpTypeSerivce.create(id, helpTypeDto);
-        mainService.processRoomSelection(id.toString(), id.toString());
-        return this.mainService.displaySelectedRoom(id.toString(), id.toString());
     }
+
+    @GetMapping("/{askerId}")
+    public ModelAndView moveRoom(@PathVariable("askerId") Long askerId) {
+        mainService.processRoomSelection(askerId.toString(), askerId.toString());
+        return this.mainService.displaySelectedRoom(askerId.toString(), askerId.toString());
+    }
+
+
 }
