@@ -35,7 +35,7 @@ public class HelperService {
         ).collect(Collectors.toList());
         double helpCount = totalScore.size();
         double averageScore = totalScore.stream().mapToLong(Long::longValue).sum() / helpCount;
-        return new HelperDto.Response(helper, helpCount, averageScore);
+        return new HelperDto.Response(helper, averageScore, helpCount);
     }
     public List<DonorDto.Response> findAllDonorByHelper(Long helperId) {
         Helper helper = helperRepository.findById(helperId).get();
