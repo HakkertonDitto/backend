@@ -15,8 +15,7 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
-*.war
+
 *.nar
 *.ear
 *.zip
@@ -28,9 +27,7 @@ hs_err_pid*
 replay_pid*
 
 ### Gradle template
-.gradle
-**/build/
-!src/**/build/
+
 
 # Ignore Gradle GUI config
 gradle-app.setting
