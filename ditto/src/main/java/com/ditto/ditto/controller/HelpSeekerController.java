@@ -21,9 +21,10 @@ public class HelpSeekerController {
 
     // helpType생성 및 helpSeeker 생성
     @PostMapping
-    public void create(@RequestBody HelpTypeDto.Request helpTypeDto) {
+    public ResponseEntity<HelpTypeDto.Response> create(@RequestBody HelpTypeDto.Request helpTypeDto) {
         Long id = helpSeekerService.create();
-        HelpTypeDto.Response helpType = helpTypeSerivce.create(id, helpTypeDto);
+//        HelpTypeDto.Response helpType = helpTypeSerivce.create(id, helpTypeDto);
+        return ResponseEntity.ok(helpTypeSerivce.create(id, helpTypeDto));
     }
 
     @GetMapping("/{askerId}")
