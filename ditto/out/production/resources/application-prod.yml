@@ -7,16 +7,17 @@ spring:
     hikari:
       connection-test-query: select 1 from dual
   jpa:  # jpa 사용시 추가
-    hibernate:
-      ddl-auto: create
-      properties:
-        hibernate:
-          show_sql: true
-          format_sql: true
-      open-in-view: false
-      h2:
-        console:
-          enabled: true
+    properties:
+      hibernate:
+        hbm2ddl:
+           auto: create
+        show_sql: true
+        format_sql: true
+        enable_lazy_load_no_trans: true
+    open-in-view: false
+    h2:
+     console:
+       enabled: true
     defer-datasource-initialization: true #더미데이터 용
     show-sql: true
   sql: #더미데이터 용
